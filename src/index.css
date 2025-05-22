@@ -34,6 +34,16 @@
     --ring: 173 80% 40%;
 
     --radius: 0.5rem;
+
+    /* Sidebar theme */
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 173 80% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 4% 20%;
+    --sidebar-ring: 173 80% 40%;
   }
 }
 
@@ -75,3 +85,51 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom styles for drawer component */
+.drawer-content {
+  max-height: 85vh;
+  height: 85vh;
+  background-color: hsl(var(--sidebar-background));
+}
+
+/* Sidebar menu animation */
+.sidebar-enter {
+  transform: translateX(-100%);
+}
+
+.sidebar-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-out;
+}
+
+.sidebar-exit {
+  transform: translateX(0);
+}
+
+.sidebar-exit-active {
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in;
+}
+
+/* Menu item hover effect */
+.menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: hsl(var(--primary));
+  transition: width 0.3s ease;
+}
+
+.menu-item:hover:after {
+  width: 100%;
+}
+

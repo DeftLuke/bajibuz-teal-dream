@@ -1,9 +1,12 @@
 
 import { Link, useLocation } from 'react-router-dom';
+import { Menu } from 'lucide-react';
+import { useSidebar } from '@/context/SidebarContext';
 
 const BottomNav = () => {
   const location = useLocation();
   const path = location.pathname;
+  const { toggleSidebar } = useSidebar();
   
   const isActive = (route: string) => {
     return path === route;
@@ -11,15 +14,13 @@ const BottomNav = () => {
   
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-background border-t border-border flex justify-between items-center h-16 z-10">
-      <Link 
-        to="/" 
-        className={`flex flex-1 flex-col items-center justify-center h-full ${isActive('/') ? 'text-teal-500' : 'text-gray-400'}`}
+      <button 
+        onClick={toggleSidebar}
+        className={`flex flex-1 flex-col items-center justify-center h-full ${isActive('/menu') ? 'text-teal-500' : 'text-gray-400'}`}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" />
-        </svg>
+        <Menu className="h-5 w-5" />
         <span className="text-xs mt-1">Menu</span>
-      </Link>
+      </button>
       
       <Link 
         to="/casino" 
