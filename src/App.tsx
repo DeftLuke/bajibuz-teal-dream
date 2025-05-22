@@ -18,6 +18,9 @@ import Deposit from "./pages/Deposit";
 import EWallet from "./pages/EWallet";
 import SelectPromotion from "./pages/SelectPromotion";
 import EnterAmount from "./pages/EnterAmount";
+import Profile from "./pages/Profile";
+import PersonalInfo from "./pages/PersonalInfo";
+import ChangePassword from "./pages/ChangePassword";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,9 @@ const App = () => (
               <Route path="/deposit/ewallet" element={<EWallet />} />
               <Route path="/deposit/select-promotion" element={<SelectPromotion />} />
               <Route path="/deposit/enter-amount" element={<EnterAmount />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/personal-info" element={<PersonalInfo />} />
+              <Route path="/profile/change-password" element={<ChangePassword />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Wallet } from 'lucide-react';
+import { Menu, Wallet, User } from 'lucide-react';
 import { useSidebar } from '@/context/SidebarContext';
 
 const BottomNav = () => {
@@ -49,6 +49,14 @@ const BottomNav = () => {
       >
         <Wallet className="h-5 w-5" />
         <span className="text-xs mt-1">Deposit</span>
+      </Link>
+      
+      <Link 
+        to="/profile" 
+        className={`flex flex-1 flex-col items-center justify-center h-full ${isActive('/profile') ? 'text-teal-500' : 'text-gray-400'}`}
+      >
+        <User className="h-5 w-5" />
+        <span className="text-xs mt-1">Profile</span>
       </Link>
     </nav>
   );
