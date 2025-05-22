@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
+import { motion } from "framer-motion";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -28,48 +29,64 @@ const Signup = () => {
   };
 
   const swipeHandlers = useSwipeable({
-    onSwipedRight: () => navigate("/login"), // Swipe right to go to login
+    onSwipedRight: () => navigate("/login"),
   });
 
   return (
-    <div
-      {...swipeHandlers}
-      className="min-h-screen flex flex-col bg-black text-white"
-    >
+    <div {...swipeHandlers} className="min-h-screen flex flex-col bg-black text-white">
       {/* Header */}
-      <div className="p-4 flex justify-between items-center">
+      <div className="p-4 flex justify-between items-center md:px-8">
         <Link to="/" className="flex items-center gap-1">
-          <div className="font-bold text-xl text-white flex items-center">
-            <img src="./logo.png" alt="logo" height={6} width={100} />
-          </div>
+          <img src="./logo.png" alt="logo" className="h-6 md:h-8 w-auto" />
         </Link>
         <Link to="/">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
+          <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
         </Link>
       </div>
 
       {/* Banner */}
-      <div className="h-40 bg-gradient-to-r from-gray-900 to-teal-800 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1517232115160-ff93364542dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=400&q=80"
-            alt="Signup banner"
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
+      <div className="h-36 md:h-48 bg-gradient-to-r from-gray-900 to-teal-800 relative overflow-hidden">
+       <div className="w-full max-w-[1920px]  flex flex-col items-center justify-center px-4 md:px-10 bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-center py-8">
+      {/* Brand Name */}
+      <motion.h1
+        initial={{ opacity: 0, scale: 0.8, y: -30, rotateX: -90 }}
+        animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.19, 1, 0.22, 1],
+        }}
+        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight font-cinzel"
+      >
+        <span className="text-white">Baji</span>
+        <span className="text-teal-400">Buz</span>
+      </motion.h1>
+
+      {/* Description */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.3, duration: 0.8 }}
+        className="mt-4 text-base sm:text-lg md:text-xl text-gray-300 font-light font-poppins max-w-3xl px-4"
+      >
+        Step into the world of <span className="text-white font-semibold">Baji</span><span className="text-teal-400 font-semibold">Buz</span> — 
+        where excitement never sleeps. 
+      </motion.p>
+
+      {/* Optional CTA Button */}
+      
+      <motion.button
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.6 }}
+        className="mt-6 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl text-base sm:text-lg transition-all"
+      >
+        🎁 Claim Your Welcome Bonus
+      </motion.button>
+     
+    </div>
       </div>
 
       {/* Tab Navigation */}
@@ -77,42 +94,22 @@ const Signup = () => {
         <Link to="/login" className="flex-1 py-4 text-center text-gray-400">
           Log in
         </Link>
-        <Link
-          to="/signup"
-          className="flex-1 py-4 text-center text-teal-500 border-b-2 border-teal-500 font-medium"
-        >
+        <Link to="/signup" className="flex-1 py-4 text-center text-teal-500 border-b-2 border-teal-500 font-medium">
           Sign up
         </Link>
       </div>
 
       {/* Signup Form */}
-      <div className="flex-1 p-6 animate-fade-in mb-8">
-        <form onSubmit={handleSubmit}>
+      <div className="flex-1 px-4 md:px-8 py-6 animate-fade-in mb-12">
+        <form onSubmit={handleSubmit} className="space-y-5 max-w-xl mx-auto">
           {/* Full Name */}
-          <div className="mb-4">
-            <label
-              htmlFor="fullName"
-              className="flex items-center text-sm font-medium text-gray-300 mb-1"
-            >
+          <div>
+            <label htmlFor="fullName" className="text-sm text-gray-300 mb-1 block">
               Full legal name
-              <button className="ml-1 text-gray-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
             </label>
             <input
-              type="text"
               id="fullName"
+              type="text"
               placeholder="Enter your full legal name"
               className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               value={fullName}
@@ -121,16 +118,13 @@ const Signup = () => {
           </div>
 
           {/* Username */}
-          <div className="mb-4">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium text-gray-300 mb-1"
-            >
+          <div>
+            <label htmlFor="username" className="text-sm text-gray-300 mb-1 block">
               Username
             </label>
             <input
-              type="text"
               id="username"
+              type="text"
               placeholder="Enter your username"
               className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               value={username}
@@ -139,16 +133,13 @@ const Signup = () => {
           </div>
 
           {/* Email */}
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-300 mb-1"
-            >
+          <div>
+            <label htmlFor="email" className="text-sm text-gray-300 mb-1 block">
               Email
             </label>
             <input
-              type="email"
               id="email"
+              type="email"
               placeholder="Enter your email"
               className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               value={email}
@@ -157,61 +148,38 @@ const Signup = () => {
           </div>
 
           {/* Currency */}
-          <div className="mb-4">
-            <label
-              htmlFor="currency"
-              className="block text-sm font-medium text-gray-300 mb-1"
-            >
-              Choose currency
-            </label>
-            <div className="relative">
-              <div className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="w-5 h-5 rounded-full mr-2 overflow-hidden">
-                    <img src="./flagp.png" alt="flag" height={20} width={30} />
-                  </div>
-                  <span>BDT</span>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+          <div>
+            <label className="text-sm text-gray-300 mb-1 block">Choose currency</label>
+            <div className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white flex items-center justify-between">
+              <div className="flex items-center">
+                <img src="./flagp.png" alt="flag" className="w-5 h-5 rounded-full mr-2" />
+                <span>{currency}</span>
               </div>
+              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0
+                 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </div>
           </div>
 
-          <div className="mb-4">
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-gray-300 mb-1"
-            >
+          {/* Phone Number */}
+          <div>
+            <label htmlFor="phone" className="text-sm text-gray-300 mb-1 block">
               Phone number
             </label>
-            <div className="flex">
-              <div className="relative w-1/4 mr-2">
-                <div className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="w-5 h-5 rounded-md bg-[#0F281D]  flex items-center justify-center overflow-hidden">
-                      
-                      <span className="text-xs">🇧🇩</span>
-                    </div>
-                    <span>+880</span>
-                  </div>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <div className="w-full sm:w-1/3">
+                <div className="px-3 py-3 bg-secondary border border-border rounded-md text-white flex justify-between">
+                  <span className="flex items-center gap-2">
+                    🇧🇩 <span>{phoneCode}</span>
+                  </span>
                 </div>
               </div>
               <input
-                type="tel"
                 id="phone"
-                placeholder="- - - - - - - - -"
-                className="w-3/4 px-3 py-3 bg-secondary border border-border rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                type="tel"
+                placeholder="1XXXXXXXXX"
+                className="flex-1 px-3 py-3 bg-secondary border border-border rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
@@ -219,18 +187,13 @@ const Signup = () => {
           </div>
 
           {/* Refer Code */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="referCode"
-                className="block text-sm font-medium text-gray-300 mb-1"
-              >
-                Refer code (Optional)
-              </label>
-            </div>
+          <div>
+            <label htmlFor="referCode" className="text-sm text-gray-300 mb-1 block">
+              Refer code (Optional)
+            </label>
             <input
-              type="text"
               id="referCode"
+              type="text"
               placeholder="Enter refer code"
               className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               value={referCode}
@@ -238,35 +201,29 @@ const Signup = () => {
             />
           </div>
 
+          {/* Agreement */}
+          <div className="flex items-start gap-2">
+            <input
+              id="agreement"
+              type="checkbox"
+              checked={isAgreed}
+              onChange={(e) => setIsAgreed(e.target.checked)}
+              className="mt-1 h-4 w-4 text-teal-500 bg-secondary border-gray-400 rounded"
+            />
+            <label htmlFor="agreement" className="text-sm text-gray-300 leading-snug">
+              I confirm that I am 18 years old and I have read the{" "}
+              <span className="text-teal-500 underline">Terms & Conditions</span>.
+            </label>
+          </div>
+
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-teal-500 text-white py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors mb-4"
+            className="w-full bg-teal-500 text-white py-3 rounded-md font-medium hover:bg-opacity-90 transition"
           >
             Continue
           </button>
-
-          {/* Terms */}
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="agreement"
-              className="h-4 w-4 border-gray-400 rounded bg-secondary border text-teal-500 focus:ring-teal-500"
-              checked={isAgreed}
-              onChange={(e) => setIsAgreed(e.target.checked)}
-            />
-            <label
-              htmlFor="agreement"
-              className="ml-2 block text-sm text-gray-300"
-            >
-              I confirm that I am 18 years old and I have read the{" "}
-              <span className="text-teal-500">Terms & Conditions</span>
-            </label>
-          </div>
         </form>
-
-        <div className="absolute bottom-4 right-4">
-        </div>
       </div>
     </div>
   );
