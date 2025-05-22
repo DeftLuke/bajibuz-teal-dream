@@ -51,8 +51,7 @@ const ForgotPassword = () => {
       <div className="p-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-1">
           <div className="font-bold text-xl text-white flex items-center">
-            <span className="text-teal-500">baji</span>
-            <span>buz</span>
+           <img src="./logo.png" alt="logo" height={6} width={100} />
           </div>
         </Link>
         
@@ -156,7 +155,7 @@ const ForgotPassword = () => {
                     <div className="w-full px-3 py-3 bg-secondary border border-border rounded-md text-white flex items-center justify-between">
                       <div className="flex items-center">
                         <div className="w-5 h-5 rounded-full bg-green-600 mr-1 flex items-center justify-center overflow-hidden">
-                          <span className="text-xs">🇧🇩</span>
+                      <img src="./flagp.png" alt="flag" height={20} width={30}/>
                         </div>
                         <span>+880</span>
                       </div>
