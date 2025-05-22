@@ -14,6 +14,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import NotFound from "./pages/NotFound";
+import Deposit from "./pages/Deposit";
+import EWallet from "./pages/EWallet";
+import SelectPromotion from "./pages/SelectPromotion";
+import EnterAmount from "./pages/EnterAmount";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +34,10 @@ const App = () => (
               <Route path="/casino" element={<Casino />} />
               <Route path="/slots" element={<Slots />} />
               <Route path="/promotions" element={<Promotions />} />
+              <Route path="/deposit" element={<Deposit />} />
+              <Route path="/deposit/ewallet" element={<EWallet />} />
+              <Route path="/deposit/select-promotion" element={<SelectPromotion />} />
+              <Route path="/deposit/enter-amount" element={<EnterAmount />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

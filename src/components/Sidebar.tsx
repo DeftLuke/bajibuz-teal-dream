@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Gift, 
   Crown, 
@@ -35,16 +35,19 @@ const MenuLink = ({
   icon: Icon, 
   children, 
   hasDropdown = false,
-  isExternal = false 
+  isExternal = false,
+  onClick
 }: { 
   to: string; 
   icon: React.ElementType; 
   children: React.ReactNode;
   hasDropdown?: boolean;
   isExternal?: boolean;
+  onClick?: () => void;
 }) => (
   <Link 
     to={to} 
+    onClick={onClick}
     className={cn(
       "flex items-center justify-between py-4 px-5 text-gray-300 hover:text-teal-500 transition-colors",
       "border-b border-gray-800"
@@ -62,6 +65,12 @@ const MenuLink = ({
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   // For mobile devices, use a drawer
   const isMobile = window.innerWidth < 768;
+  const navigate = useNavigate();
+  
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    onClose();
+  };
   
   const menuContent = (
     <div className="flex flex-col bg-black min-h-screen w-full">
@@ -82,7 +91,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       
       {/* Menu Items */}
       <div className="flex flex-col">
-        <MenuLink to="/promotions" icon={Gift} hasDropdown>
+        <MenuLink 
+          to="/promotions" 
+          icon={Gift} 
+          hasDropdown
+          onClick={() => handleNavigation('/promotions')}
+        >
           Promotions
         </MenuLink>
         <MenuLink to="/vip-club" icon={Crown}>
